@@ -1,0 +1,12 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  ICS\DashboardBundle\Twig\:
+    resource: "../src/Twig"
+    public: false
+    tags: ['twig.extension']
+  ICS\DashboardBundle\Controller\:
+    resource: "../src/Controller"
+    tags: ['controller.service_arguments']

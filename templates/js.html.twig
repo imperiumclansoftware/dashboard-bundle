@@ -1,0 +1,177 @@
+<script src="{{ asset('bundles/dashboard/libs/jquery-3.6.0.min.js') }}"></script>
+<script src="{{ asset('bundles/dashboard/libs/dist/gridstack-h5.js') }}"></script>
+<script src="{{ asset('bundles/dashboard/js/dashboard.js') }}"></script>
+<script src="{{ asset('bundles/dashboard/libs/moment/moment.js') }}"></script>
+<script src="{{ asset('bundles/dashboard/libs/moment/moment-with-locales.js') }}"></script>
+<script src="{{ asset('bundles/dashboard/libs/moment/moment-timezone-with-data.js') }}"></script>
+
+
+<script>
+
+var grid;
+
+$(document).ready(function() {
+
+    function InitDashboard()
+    {
+        $('.widget').hover(function(){
+            $(this).find('.btn-widget').each(function(){
+                $(this).toggleClass('d-none')
+            })
+        },function(){
+            $(this).find('.btn-widget').each(function(){
+                $(this).toggleClass('d-none')
+            })
+        });
+
+        grid.on('removed',function(e,items) {
+
+            items.forEach(function(item){
+                $.ajax({
+                    url:'{{ path('dashboard-remove') }}',
+                    method: 'POST',
+                    data:{
+                        id: item.id
+                    }
+                }).done(function(data){
+                });
+            });
+        });
+
+        $('.widget .btn-config').click(function(){
+
+            $.ajax({
+                url: '{{ path('dashboard-config') }}/' + $(this).attr('wid'),
+                method: 'POST',
+                data: {
+                    'route': '{{ app.request.attributes.get('_route') }}',
+                    'dashboard': '{{ dashboard }}'
+                }
+            }).done(function(data){
+
+                $('#widgetForm').html(data);
+                $('#widgetConfig').modal('toggle');
+
+            });
+        });
+    }
+
+    function saveWidget(item)
+    {
+            $.ajax({
+                method: 'POST',
+                url: '{{ path('dashboard-edit') }}',
+                dataType: 'json',
+                data: {
+                    id: item.id,
+                    h: item.h,
+                    w: item.w,
+                    x: item.x,
+                    y: item.y
+                },
+                success: function(data) {
+                    console.log('Widget Save !');
+                }
+            });
+    }
+
+
+    (function($) {
+
+        "use strict";
+
+        var fullHeight = function() {
+
+            $('.js-fullheight').css('height', $(window).height());
+            $(window).resize(function(){
+                $('.js-fullheight').css('height', $(window).height());
+            });
+
+        };
+        fullHeight();
+
+        $('#dashboard-addwidget').on('click', function () {
+
+            var icon = $(this).find('.fa').first();
+            icon.toggleClass('fa-plus');
+            icon.toggleClass('fa-times');
+
+            $(this).toggleClass('bg-primary');
+            $(this).toggleClass('bg-warning');
+
+            $('#sidebar').toggleClass('active');
+        });
+
+        $('#dashboard-addwidget').click();
+
+    })(jQuery);
+
+    var items = [
+
+        {% for widget in widgets %}
+            {
+                w:{{ widget.width|default('0') }},
+                h:{{ widget.height|default('0') }},
+                x:{{ widget.x|default('0') }},
+                y:{{ widget.y|default('0') }},
+                content: '{{ widget.ui|raw|e('js') }}',
+                {% if widget.resize == false %}
+                    noResize: true,
+                {% endif %}
+                id: {{ widget.id|default('0') }},
+            },
+        {% endfor %}
+    ];
+
+
+
+
+    grid = GridStack.init({
+        column: {{ config.nbColumns }}
+    });
+
+    grid.load(items);
+
+    grid.on('change',function(event,items){
+
+        items.forEach(function(item){
+            saveWidget(item);
+        });
+
+    });
+
+     $('.widgetButton').click(function(){
+
+        var widgetType=$(this).attr('type');
+
+        $.ajax({
+            url: '{{ path('dashboard-add') }}',
+            method: 'POST',
+            data: {
+                type: widgetType,
+                dashboard: '{{ dashboard }}'
+            }
+        }).done(function(data){
+            grid.addWidget(data.widget);
+
+            InitDashboard();
+
+            $("body").append(data.js);
+            $('#dashboard-addwidget').click();
+        });
+
+
+    });
+
+    InitDashboard();
+
+
+
+
+});
+
+</script>
+
+{% for widget in widgets %}
+    {{ widget.js|raw }}
+{% endfor %}

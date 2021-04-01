@@ -1,0 +1,24 @@
+{% extends "@Dashboard/widget.html.twig" %}
+
+{% block title %}
+    <h3><i class="fa fa-info-circle"></i> Aide sur les widgets</h3>
+{% endblock %}
+
+{% block content %}
+    <h4>Bienvenue sur votre tableau de bord.</h4>
+    <p>
+        Ici vous pouvez ajouter des petits blocs d'information appelés <strong>Widget</strong>. Vous pouvez en ajouter en cliquant sur le bouton 
+        <span class="btn btn-primary btn-sm text-light rounded-circle dashboard-addwidget"><i class="fa fa-plus"></i></span> en bas à droite. 
+        Les widgets sont déplaçables et pour certains (comme celui-ci) redimensionables. 
+    </p>
+    <p>
+        Lors du survol d'un widget 2 icones apparaissent en haut à droite de chaque widget : 
+        <ul>
+            <li><i class="fa fa-cog"></i> permet la configuration du widget (couleurs, etc...).</li>
+            <li><i class="fa fa-times"></i> permet de supprimer le widget du tableau de bord.</li>
+        </ul>
+    </p>
+    <p>
+        Organiser votre tableau de bord comme vous l'entendez.
+    </p>
+{% endblock %}

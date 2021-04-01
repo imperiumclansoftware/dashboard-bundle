@@ -1,0 +1,51 @@
+{% trans_default_domain('dashboard') %}
+<div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar" class="bg-dark text-light">
+        <div class="img bg-wrap text-center py-4" style="background-image: url({{ asset('bundles/dashboard/images/sidebar_bg.jpg') }});">
+            <div class="user-logo">
+                <div class="img" style="background-image: url();"></div>
+                <h3>Liste des Widgets</h3>
+            </div>
+        </div>
+        <ul class="list-unstyled components mb-5">
+
+            {% for groupName,widgetGroup in config.widgets %}
+                <h3 class="text-center">{{ groupName }}</h3>
+                {% for widget in widgetGroup %}
+                    {# Gestion des droits #}
+                    {% if widget.roles|length > 0 %}
+                        {% set granted=false %}
+                        {% for role in widget.roles %}
+                            {% set granted = (granted or is_granted(role)) %}
+                        {% endfor %}
+                    {% else %}
+                        {% set granted=true %}
+                    {% endif %}
+                    {% if  granted %}
+                        <li class="active">
+                            <a class="widgetButton" type="{{ widget.entity }}" href="#">
+                                <i class="{{ widget.icon }}"></i> {{ widget.libelle|trans }}
+                            </a>
+                        </li>
+                    {% endif %}
+
+                {% endfor %}
+            {% endfor %}
+
+        </ul>
+    </nav>
+    <div id="content" class="p-4 p-md-5 pt-5">
+        <h1>{% block dashboard_icon %}<i class="fa fa-columns"></i>{% endblock %} {% block dashboard_title %}{{ 'Dashboard'|trans }}{% endblock %}</h1>
+        <div class="grid-stack grid-stack-{{ config.nbColumns }}"></div>
+        <div id="dashboard-addwidget" class="bg-warning text-light text-center dashboard-addwidget">
+            <i class="fa fa-times"></i>
+        </div>
+    </div>
+</div>
+<div id="widgetConfig" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog  modal-lg" role="document">
+        <div id="widgetForm" class="modal-content">
+            
+        </div>
+    </div>
+</div>

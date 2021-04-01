@@ -1,0 +1,19 @@
+{
+    "name": "ics/dashboard-bundle",
+    "description": "Bundle de gestion des tableaux de bord",
+    "type": "symfony-bundle",
+    "version": "0.0.1",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "ICS\\DashboardBundle\\" : "/src"
+        }
+    },
+    "require": {
+        "symfony/framework-bundle": "^5.2",
+        "symfony/orm-pack": "^2.1",
+        "symfony/twig-bundle": "^5.2",
+        "symfony/security-bundle": "^5.2"
+    }
+
+}

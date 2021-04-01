@@ -1,0 +1,20 @@
+{% extends "@Dashboard/widget.html.twig" %}
+
+{% block title %}
+    <h3><i class="fas fa-sticky-note"></i> Post-It</h3>
+{% endblock %}
+
+{% block content %}
+    <div id="postittexte-{{widget.id}}" class="texte">
+        <span id="postitBtn-{{widget.id}}" class="btn float-right"><i class="fa fa-edit"></i></span>
+        <div class="content">
+            {{ widget.text }}
+        </div>
+    </div>
+    <div id="postitform-{{widget.id}}" class="formulaire d-none">
+        <textarea class="form-control" id="postitta-{{widget.id}}" rows="5" style="height:100%;resize: vertical;">{{ widget.text }}</textarea>
+        <div class="mt-3">
+            <span id="postitsubmit-{{widget.id}}" class="btn btn-primary"><i class="fa fa-save"></i> Enregistrer</span>
+        </div>
+    </div>
+{% endblock %}

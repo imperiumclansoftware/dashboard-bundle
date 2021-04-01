@@ -1,0 +1,40 @@
+<script>
+
+$(document).ready(function(){
+
+    $('#postitBtn-{{widget.id}}').click(function(){
+        $('#postittexte-{{widget.id}}').toggleClass('d-none');
+        $('#postitform-{{widget.id}}').toggleClass('d-none');
+        
+    });
+
+    $('#postitsubmit-{{widget.id}}').click(function(){
+
+        $.ajax({
+            url: '{{ path('dashboard-postit-save') }}',
+            method: 'POST',
+            data: {
+                texte: $('#postitta-{{widget.id}}').val(),
+                wid: {{widget.id}}
+            }
+        }).done(function(data){
+
+            if(data=='Ok')
+            {
+                $('#postittexte-{{widget.id}} .content').html($('#postitta-{{widget.id}}').val());
+                $('#postittexte-{{widget.id}}').toggleClass('d-none');
+                $('#postitform-{{widget.id}}').toggleClass('d-none');
+            }
+        });
+
+        
+
+    });
+
+    $('#postitform-{{widget.id}} textarea').on('mouseup',function(){ $(this).select(); });
+
+});
+
+
+
+</script>

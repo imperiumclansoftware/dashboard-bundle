@@ -1,0 +1,22 @@
+{{ form_start(form) }}
+<input type="hidden" value="{{ redirectRoute }}" name="redirectRoute"/>
+<div class="modal-header">
+    <h5 class="modal-title"><i class="fa fa-cog"></i> Configuration du widget</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <i class="fa fa-times"></i>
+    </button>
+</div>
+<div  class="modal-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-6">{{ form_row(form.bgColor) }}</div>
+            <div class="col-12 col-md-6">{{ form_row(form.textColor) }}</div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                {{ form_rest(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}

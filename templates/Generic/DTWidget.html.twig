@@ -1,0 +1,12 @@
+{% extends "@Dashboard/widget.html.twig" %}
+
+{% block content %}
+
+<div id="dtwidget-{{ widget.id }}" class="text-center">
+    <h1><i class="fa fa-globe"></i><h1>
+    <p id="fuseau" class="lead"><i class="fa fa-map-marker-alt"></i> {{ widget.timezone|replace({'_' : ' '}) }}</p>
+    <p id="time" class="">00:00:00</p>
+    <p id="date" class="lead">00/00/0000</p>
+</div>
+
+{% endblock %}

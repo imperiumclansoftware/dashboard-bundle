@@ -1,0 +1,42 @@
+
+.grid-stack > .grid-stack-item > .grid-stack-item-content {
+
+    padding: none;
+
+}
+
+.widget {
+    margin: none;
+}
+
+
+.grid-stack-item .widget:hover {
+
+    z-index: 999;
+    box-shadow: 5px 5px 5px rgba(0,0,0,.3);
+
+}
+
+#dashboard-addwidget {
+
+    position: fixed;
+    
+    bottom: 5em;
+    right: 5em;
+
+    width: 3em;
+    height: 3em;
+    line-height: 3em;
+    border-radius: 50%;
+    box-shadow: 2px 2px 2px rgba(0,0,0,.3);
+
+
+}
+
+#dashboard-addwidget:hover {
+
+    box-shadow: 5px 5px 5px rgba(0,0,0,.3);
+    cursor: pointer;
+
+}
+

@@ -1,0 +1,19 @@
+<script>
+$(document).ready(function(){
+
+    setTimeout(updateDate{{ widget.id }},0000);
+    function updateDate{{ widget.id }}()
+    {
+        moment.locale('fr');
+        
+        var dt = moment().tz('{{ widget.timezone }}');
+        
+        {# dt.tz('Europe/Paris'); #}
+        $('#dtwidget-{{ widget.id }} #date').html(dt.format('dddd LL'));
+        $('#dtwidget-{{ widget.id }} #time').html(dt.format('LTS'));
+        $('#dtwidget-{{ widget.id }} #fuseau').html(dt.tz.guess);
+        setTimeout(updateDate{{ widget.id }},500);
+    }
+});
+
+</script>
