@@ -77,9 +77,6 @@ $(document).ready(function() {
 
 
     (function($) {
-
-        "use strict";
-
         var fullHeight = function() {
 
             $('.js-fullheight').css('height', $(window).height());
@@ -92,9 +89,10 @@ $(document).ready(function() {
 
         $('#dashboard-addwidget').on('click', function () {
 
-            var icon = $(this).find('.fa').first();
-            icon.toggleClass('fa-plus');
-            icon.toggleClass('fa-times');
+            var icon = $(this).children('i').first();
+
+            $('.addwidget-icon').toggleClass('fa-plus');
+            $('.addwidget-icon').children('i').first().toggleClass('fa-times');
 
             $(this).toggleClass('bg-primary');
             $(this).toggleClass('bg-warning');

@@ -35,17 +35,17 @@
         </ul>
     </nav>
     <div id="content" class="p-4 p-md-5 pt-5">
-        <h1>{% block dashboard_icon %}<i class="fa fa-columns"></i>{% endblock %} {% block dashboard_title %}{{ 'Dashboard'|trans }}{% endblock %}</h1>
+        <h1>{% block dashboard_icon %}<i class="fa fa-columns"></i>{% endblock %} {% block dashboard_title %}{{ config.title|default('Dashboard')|trans }}{% endblock %}</h1>
         <div class="grid-stack grid-stack-{{ config.nbColumns }}"></div>
         <div id="dashboard-addwidget" class="bg-warning text-light text-center dashboard-addwidget">
-            <i class="fa fa-times"></i>
+            <i class="addwidget-icon fa fa-times"></i>
         </div>
     </div>
 </div>
 <div id="widgetConfig" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog  modal-lg" role="document">
         <div id="widgetForm" class="modal-content">
-            
+
         </div>
     </div>
 </div>

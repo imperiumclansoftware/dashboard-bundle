@@ -2,7 +2,7 @@
     "name": "ics/dashboard-bundle",
     "description": "Bundle de gestion des tableaux de bord",
     "type": "symfony-bundle",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "license": "MIT",
     "autoload": {
         "psr-4": {
