@@ -211,6 +211,8 @@ class DTWidget extends Widget
 
 ### Step 2 : Integrate in configuration
 
+Before integrating, don't forget to [update the database](#step-4:-install-database).
+
 ```yaml
     # ....
                 widgets:
