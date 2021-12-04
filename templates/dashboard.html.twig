@@ -1,14 +1,12 @@
 {% trans_default_domain('dashboard') %}
-<div class="wrapper d-flex align-items-stretch">
-    <nav id="sidebar" class="bg-dark text-light">
-        <div class="img bg-wrap text-center py-4" style="background-image: url({{ asset('bundles/dashboard/images/sidebar_bg.jpg') }});">
-            <div class="user-logo">
-                <div class="img" style="background-image: url();"></div>
-                <h3>Liste des Widgets</h3>
-            </div>
-        </div>
-        <ul class="list-unstyled components mb-5">
 
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas-widgets" aria-labelledby="offcanvasLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasLabel">{{ 'Widgets'|trans }}</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="list-group components">
             {% for groupName,widgetGroup in config.widgets %}
                 <h3 class="text-center">{{ groupName }}</h3>
                 {% for widget in widgetGroup %}
@@ -22,30 +20,33 @@
                         {% set granted=true %}
                     {% endif %}
                     {% if  granted %}
-                        <li class="active">
-                            <a class="widgetButton" type="{{ widget.entity }}" href="#">
-                                <i class="{{ widget.icon }}"></i> {{ widget.libelle|trans }}
-                            </a>
-                        </li>
+                        <a class="widgetButton list-group-item list-group-item-action" type="{{ widget.entity }}" href="#">
+                            <i class="{{ widget.icon }}"></i> {{ widget.libelle|trans }}
+                        </a>
                     {% endif %}
 
                 {% endfor %}
             {% endfor %}
-
-        </ul>
-    </nav>
-    <div id="content" class="p-4 p-md-5 pt-5">
-        <h1>{% block dashboard_icon %}<i class="fa fa-columns"></i>{% endblock %} {% block dashboard_title %}{{ config.title|default('Dashboard')|trans }}{% endblock %}</h1>
-        <div class="grid-stack grid-stack-{{ config.nbColumns }}"></div>
-        <div id="dashboard-addwidget" class="bg-warning text-light text-center dashboard-addwidget">
-            <i class="addwidget-icon fa fa-times"></i>
         </div>
     </div>
 </div>
-<div id="widgetConfig" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog  modal-lg" role="document">
-        <div id="widgetForm" class="modal-content">
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div id="content" class="">
+                <h1>{% block dashboard_icon %}<i class="fa fa-columns"></i>{% endblock %} {% block dashboard_title %}{{ config.title|default('Dashboard')|trans }}{% endblock %}</h1>
+                <div class="grid-stack grid-stack-{{ config.nbColumns }}"></div>
+                <button id="dashboard-addwidget" class="btn btn-primary rounded-circle dashboard-addwidget" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-widgets">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
         </div>
+    </div>
+</div>
+<div id="widgetConfig" class="modal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+            <div id="widgetForm" class="modal-content">
+
+            </div>
     </div>
 </div>

@@ -86,22 +86,6 @@ $(document).ready(function() {
 
         };
         fullHeight();
-
-        $('#dashboard-addwidget').on('click', function () {
-
-            var icon = $(this).children('i').first();
-
-            $('.addwidget-icon').toggleClass('fa-plus');
-            $('.addwidget-icon').children('i').first().toggleClass('fa-times');
-
-            $(this).toggleClass('bg-primary');
-            $(this).toggleClass('bg-warning');
-
-            $('#sidebar').toggleClass('active');
-        });
-
-        $('#dashboard-addwidget').click();
-
     })(jQuery);
 
     var items = [
@@ -155,7 +139,7 @@ $(document).ready(function() {
             InitDashboard();
 
             $("body").append(data.js);
-            $('#dashboard-addwidget').click();
+            // $('#dashboard-addwidget').click();
         });
 
 

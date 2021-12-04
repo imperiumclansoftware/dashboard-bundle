@@ -1,0 +1,9 @@
+doctrine:
+    orm:
+        mappings:
+            DashboardBundle:
+                is_bundle: true
+                type: annotation
+                dir: 'src/Entity'
+                prefix: 'ICS\DashboardBundle\Entity'
+                alias: Dashboard
