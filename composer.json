@@ -2,7 +2,7 @@
     "name": "ics/dashboard-bundle",
     "description": "Bundle de gestion des tableaux de bord",
     "type": "symfony-bundle",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "license": "MIT",
     "autoload": {
         "psr-4": {
@@ -10,14 +10,14 @@
         }
     },
     "require": {
-        "symfony/config": "^4.4|^5",
-        "symfony/dependency-injection": "^4.4|^5",
-        "symfony/event-dispatcher": "^4.4|^5",
+        "symfony/config": "^5",
+        "symfony/dependency-injection": "^5",
+        "symfony/event-dispatcher": "^5",
         "symfony/framework-bundle": "^5",
-        "symfony/intl": "^4.4|^5",
+        "symfony/intl": "^5",
         "symfony/string": "^5",
-        "symfony/translation": "^4.4|^5",
-        "symfony/twig-bundle": "^4.4|^5",
+        "symfony/translation": "^5",
+        "symfony/twig-bundle": "^5",
         "symfony/framework-bundle": "^5",
         "symfony/orm-pack": "^2.1",
         "symfony/twig-bundle": "^5",
