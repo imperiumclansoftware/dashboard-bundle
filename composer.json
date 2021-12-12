@@ -2,7 +2,7 @@
     "name": "ics/dashboard-bundle",
     "description": "Bundle de gestion des tableaux de bord",
     "type": "symfony-bundle",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "license": "MIT",
     "autoload": {
         "psr-4": {
@@ -19,7 +19,7 @@
         "symfony/translation": "^5",
         "symfony/twig-bundle": "^5",
         "symfony/framework-bundle": "^5",
-        "symfony/orm-pack": "^2.1",
+        "symfony/orm-pack": "^2",
         "symfony/twig-bundle": "^5",
         "symfony/security-bundle": "^5"
     }
